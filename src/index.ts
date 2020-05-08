@@ -10,7 +10,7 @@ export class NpmContext {
     this._pkgLock = NpmContext.objFromPath(pkgFile.replace('package.json', 'package-lock.json'));
   }
   public static objFromPath(path: string): any {
-    if (!fs.existsSync(path)) throw new Error(`The file "${path}" doesn't exists.`);
+    if (!fs.existsSync(path)) return;//throw new Error(`The file "${path}" doesn't exists.`);
 
     try {
       const contentStr = fs.readFileSync(path).toString();
@@ -27,7 +27,12 @@ export class NpmContext {
   }
   private _findPkgFile(): string {
     let ctDir = __dirname;
+
     let ctFile;
+    const basePath = ctDir.substr(0, ctDir.indexOf('node_modules'));
+    if (fs.existsSync(ctFile = `${basePath}package.json`))
+      return ctFile;
+
     while (!fs.existsSync(ctFile = `${ctDir}\\package.json`))
       ctDir += '\\..';
     
