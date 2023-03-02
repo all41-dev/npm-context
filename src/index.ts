@@ -1,5 +1,4 @@
 import fs from 'fs';
-import { SemVer, compare, gt } from "semver";
 
 export class NpmContext {
   private _pkg: any;
