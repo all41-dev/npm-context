@@ -43,7 +43,7 @@ export class NpmContext {
     const res = Object.keys(depsObj).map((k) => ({
       name: k,
       rule: depsObj[k],
-      version: this._pkgLock['dependencies'][k]['version'],
+      version: this._pkgLock['packages'][`node_modules/${k}`]['version'],
     }));
     return res;
   }
