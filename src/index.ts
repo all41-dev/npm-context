@@ -49,7 +49,7 @@ export class NpmContext {
   public get package(): { name: string; version: string } {
     return {
       name: this._pkg.name,
-      version: this.package.version,
+      version: this._pkg.version,
     };
   }
 }
