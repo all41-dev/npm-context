@@ -34,7 +34,7 @@ export class NpmContext {
 
     while (!fs.existsSync(ctFile = `${ctDir}\\package.json`))
       ctDir += '\\..';
-    
+
     return ctFile;
   }
   public get dependencies(): { name: string; rule: string; version: string }[] {
@@ -45,5 +45,11 @@ export class NpmContext {
       version: this._pkgLock['packages'][`node_modules/${k}`]['version'],
     }));
     return res;
+  }
+  public get package(): { name: string; version: string } {
+    return {
+      name: this._pkg.name,
+      version: this.package.version,
+    };
   }
 }
